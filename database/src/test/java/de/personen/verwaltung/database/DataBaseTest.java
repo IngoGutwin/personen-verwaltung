@@ -1,7 +1,8 @@
 package de.personen.verwaltung.database;
+
+
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,15 @@ class DataBaseTest {
     }
 
     @Test
-    void readDataFromFileTest() throws IOException{
-        Path sqlFilePath = Paths.get("/home/lone/Documents/code/java/personen-verwaltung/export_adressen.sql");
+    void readDataFromFileTest() throws IOException {
+        CsvHandler csvHandler = new CsvHandler("/home/lone/Documents/code/java/personen-verwaltung/export_adressen.sql");
+        for (Person person : csvHandler) {
+            System.out.println(person); 
+        }
+    }
+
+    @Test
+    void checkDataBase() throws IOException {
+       
     }
 }
