@@ -1,0 +1,50 @@
+version: '3.8'
+
+networks:
+  # enable connection with Traefik
+  traefik:
+    external: true
+  # network for the app
+  backend:
+    name: personenverwaltung 
+
+services:
+
+  personen_verwaltung_db:
+    image: mysql:5.7
+    container_name: java-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: java-mysql
+      MYSQL_USER: java-mysql
+      MYSQL_PASSWORD: pwd
+    ports:
+      - :3306
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks: 
+      - backend
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - traefik.http.routers.personen_verwaltung_db.rule=Host(`personen-verwaltung.localhost`)
+
+  personen_verwaltung_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - personen_verwaltung_db 
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    expose:
+      - 80
+    networks: 
+      - backend
+      - traefik
+
+volumes:
+  dbdata:
