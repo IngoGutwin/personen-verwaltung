@@ -9,17 +9,9 @@ public class Person {
     @SequenceGenerator( name= "person_generator", sequenceName = "person_seq", allocationSize = 1 )
 
     private int id;
-/*     private String salutation; */
     private String firstName;
     private String lastName;
     private int age;
-/*     private Date birthDate;
-    private String street;
-    private int houseNO;
-    private int zipCode;
-    private String city;
-    private int telNO;
-    private String email; */
     
     public Person() {}
 
@@ -28,16 +20,6 @@ public class Person {
         this.lastName = lastName;
         this.age = age;
     }
-
-    
-
-/*     public String getSalutation() {
-        return this.salutation; 
-    }
-
-    public void setSalutation(String salutation){
-        this.salutation = salutation;
-    } */
 
     public int getId() {
         return id;

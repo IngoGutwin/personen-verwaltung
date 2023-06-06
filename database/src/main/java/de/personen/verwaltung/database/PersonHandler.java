@@ -11,17 +11,25 @@ import java.util.function.Function;
 public class PersonHandler {
 
     private SessionFactory factory;
-
+    
     public PersonHandler() {
         try {
-            this.factory = new Configuration().configure().addAnnotatedClass( Person.class ).buildSessionFactory();
+
+            Configuration config = new Configuration();
+            config.configure().addAnnotatedClass(Person.class);
+            System.out.println(config);
+
+            this.factory = config.buildSessionFactory(); 
+            Session session = factory.openSession();
+            System.out.println(session);
+
         } catch (HibernateException e) {
             e.printStackTrace();
         }
     }
 
-    public int addPerson( String firstName, String lastName, int age  ) {
-        return addPerson( new Person( firstName, lastName, age ) );
+    public void checkForTable() {
+        var transAction = new TransActions<>(this.factory);
     }
 
     public int addPerson( Person person ) {
@@ -44,7 +52,8 @@ public class PersonHandler {
 
     public List<Person> getAll() {
         var transAction = new TransActions< List<Person>>(this.factory);
-
         return transAction.commit( session -> session.createQuery("FROM Person", Person.class).list());
     }
+
+
 }
