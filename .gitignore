@@ -1,4 +1,8 @@
 target
-/database/target
-/frontend/target
 export_adressen.sql
+
+/database/target
+/database/src/test/**
+
+/frontend/target
+/database/src/test/**
