@@ -9,17 +9,17 @@ import java.util.function.Function;
 
 public class TransActions<T> {
 
-    private final SessionFactory factory;
+    private SessionFactory factory;
 
-    public TransActions(SessionFactory factory ) {
+    public TransActions(SessionFactory factory) {
         this.factory = factory;
     }
 
     public synchronized T commit( Function< Session, T > function ) {
         Transaction ta = null;
-        try( Session session = factory.openSession()) {
+        try( Session session = factory.openSession();) {
             ta = session.beginTransaction();
-            T rv =  function.apply(session);
+            T rv = function.apply(session);
             ta.commit();
             return rv;
         } catch ( HibernateException e ) {

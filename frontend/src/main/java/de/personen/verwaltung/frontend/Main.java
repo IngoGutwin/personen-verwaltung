@@ -1,7 +1,8 @@
 package de.personen.verwaltung.frontend;
 
 import de.personen.verwaltung.database.Person;
-import de.personen.verwaltung.database.PersonHandler;
+import de.personen.verwaltung.database.Person;
+import de.personen.verwaltung.database.DataHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -18,11 +19,6 @@ public class Main extends Application {
         PersonTable table = new PersonTable();
         borderPane.setCenter(table);
 
-        PersonHandler handler = new PersonHandler();
-
-        for(Person person : handler.getAll()) {
-            table.getItems().add(person);
-        }
     }
 
     public static void main(String[] args) {
