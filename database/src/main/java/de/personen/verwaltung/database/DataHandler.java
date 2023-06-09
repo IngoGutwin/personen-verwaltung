@@ -8,35 +8,23 @@ import org.hibernate.cfg.Configuration;
 import java.util.List;
 import java.util.function.Function;
 
-public class PersonHandler {
+public class DataHandler {
 
     private SessionFactory factory;
-    
-    public PersonHandler() {
+
+    public DataHandler() {
         try {
-
-            Configuration config = new Configuration();
-            config.configure().addAnnotatedClass(Person.class);
-            System.out.println(config);
-
-            this.factory = config.buildSessionFactory(); 
-            Session session = factory.openSession();
-            System.out.println(session);
-
+            this.factory = new Configuration().configure().addAnnotatedClass(Person.class).buildSessionFactory();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
     }
 
-    public void checkForTable() {
-        var transAction = new TransActions<>(this.factory);
-    }
-
-    public int addPerson( Person person ) {
-        var transAction = new TransActions<Integer>( this.factory );
-        return transAction.commit( session -> {
-            session.persist( person );
-            return person.getId();
+    public Person addPerson(Person person ) {
+        var transAction = new TransActions<Person>( this.factory );
+        return transAction.commit(session -> {
+            session.persist(person);
+            return person;
         });
     }
 
@@ -54,6 +42,5 @@ public class PersonHandler {
         var transAction = new TransActions< List<Person>>(this.factory);
         return transAction.commit( session -> session.createQuery("FROM Person", Person.class).list());
     }
-
 
 }

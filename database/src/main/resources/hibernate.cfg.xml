@@ -4,7 +4,7 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="org.hibernate.dialect.MySQLDialect"/>
         <property name="hibernate.connection.url">jdbc:mysql://personen-verwaltung.localhost:3306/java-mysql</property>
         <property name="hibernate.connection.username">java-mysql</property>

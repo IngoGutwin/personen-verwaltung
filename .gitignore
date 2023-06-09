@@ -1,8 +1,9 @@
 target
 export_adressen.sql
+export.csv
+.idea/
+.vscode/
 
 /database/target
-/database/src/test/**
 
 /frontend/target
-/database/src/test/**
