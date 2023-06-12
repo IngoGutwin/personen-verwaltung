@@ -1,7 +1,6 @@
 package de.personen.verwaltung.frontend;
 
 import de.personen.verwaltung.database.Person;
-import de.personen.verwaltung.database.Person;
 import de.personen.verwaltung.database.DataHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -18,6 +17,12 @@ public class Main extends Application {
         stage.show();
         PersonTable table = new PersonTable();
         borderPane.setCenter(table);
+
+        DataHandler dataHandler = new DataHandler();
+
+        for (Person person : dataHandler.getAll()) {
+            table.getItems().add(person);
+        } 
 
     }
 

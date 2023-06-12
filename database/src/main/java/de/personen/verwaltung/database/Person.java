@@ -3,15 +3,13 @@ package de.personen.verwaltung.database;
 import jakarta.persistence.*;
 
 @Entity
-public class Person<T> {
+public class Person {
 
     @Id
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "person_generator" )
     @SequenceGenerator( name= "person_generator", sequenceName = "person_seq", allocationSize = 1 )
 
-
-
-    private int Id;
+    private int id;
     private String salutation;
     private String firstName;
     private String lastName;
@@ -25,29 +23,12 @@ public class Person<T> {
     private String email;
     private String generateEntry;
 
-    public Person() {}
-
-    public Person(String salutation, String firstName, String lastName, String age, String street, String houseNO, String zipCode, String city, String telNO, String mobilNO, String email, String generateEntry) {
-        this.salutation = salutation;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.street = street;
-        this.houseNO = houseNO;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.telNO = telNO;
-        this.mobilNO = mobilNO;
-        this.email = email;
-        this.generateEntry = generateEntry;
-    }
-
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getSalutation() {

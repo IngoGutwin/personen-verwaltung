@@ -1,8 +1,10 @@
 target
 export_adressen.sql
-export.csv
+
 .idea/
 .vscode/
+
+/iterator-test
 
 /database/target
 

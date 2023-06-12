@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "TestOne.Main",
+            "projectName": "iterator-test"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "TestTwo.Main",
+            "projectName": "iterator-test"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "iterator-test"
+        },
+        {
+            "type": "java",
             "name": "database",
             "request": "launch",
             "mainClass": "${file}"
